@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:03:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/26 17:59:32 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/29 14:29:29 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_vec3		vunit(t_vec3 vec);
 t_vec3		vmin(t_vec3 vec1, t_vec3 vec2);
 void		oadd(t_object **list, t_object *new);
 t_object	*olast(t_object *list);
+t_vec3		rotate_x(t_vec3 vec, double theta);
 t_vec3		rotate_y(t_vec3 vec, double theta);
 void		rotate_h(t_camera *cam, double theta);
 

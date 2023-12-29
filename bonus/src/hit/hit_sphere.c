@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:17:38 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/28 16:48:00 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/29 14:33:03 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_color3	get_albedo(t_sphere *sp, t_hit_rec *rec, t_param *par, t_color3 albedo)
 	// if (!par && !par->earth_img.addr)
 	// cp = vminus(rec->p, sp->center);
 	cp = vunit(vminus(rec->p, sp->center));//
+	cp = rotate_x(cp, 89 * M_PI / 180);
 	// cp_xz = vmult(vunit(vec3(cp.x, 0, cp.z)), sp->radius);
 	cp_xz = vunit(vec3(cp.x, 0, cp.z)); //
 	// int	sign = 1;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   vec3_rotation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:32:43 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/26 18:07:42 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/29 14:28:56 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ t_vec3	rotate_y(t_vec3 vec, double theta)
 	vec.x = prev_z * sin(theta) + prev_x * cos(theta);
 	vec.y = prev_y;
 	vec.z = prev_z * cos(theta) - prev_x * sin(theta);
+	return (vec);
+}
+
+t_vec3	rotate_x(t_vec3 vec, double theta)
+{
+	double	prev_x;
+	double	prev_y;
+	double	prev_z;
+
+	prev_x = vec.x;
+	prev_y = vec.y;
+	prev_z = vec.z;
+	vec.x = prev_x;
+	vec.y = prev_y * cos(theta) - prev_z * sin(theta);
+	vec.z = prev_y * sin(theta) + prev_z * cos(theta);
 	return (vec);
 }
 
