@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 14:13:11 by dongseo          ###   ########.fr       */
+/*   Updated: 2023/12/30 17:30:33 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	get_maps(t_param *par, t_img *img, char *filepath)
 	if (ft_strcmp(filepath, "none") != 0)
 	{
 		img->img = mlx_xpm_file_to_image(par->mlx, filepath, &img->width, &img->height);
+		if (!img->img)
+			exit(13);
 		img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 		if (!img->addr)
-			exit(8);
+			exit(14);
 	}
-	else
-		img->addr = NULL;
 }
 
 void	parse_sphere(char **line, t_param *par)

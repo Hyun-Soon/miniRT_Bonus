@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 14:12:50 by dongseo          ###   ########.fr       */
+/*   Updated: 2023/12/30 17:11:50 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,8 @@ typedef int					t_object_type;
 # define LIGHT_POINT 1
 # define EPSILON 1e-6 //0.000001
 # define LUMEN 3 //이 값을 조절하여 장면의 밝기를 조절할 수 있다.
-# define WIDTH 600
-# define HEIGHT 400
-
-# define EARTH_XPM_WIDTH 2048
-# define EARTH_XPM_HEIGHT 1024
+# define WIDTH 800
+# define HEIGHT 600
 
 struct s_vec3
 {

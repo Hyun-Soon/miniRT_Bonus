@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:50:23 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 14:38:26 by dongseo          ###   ########.fr       */
+/*   Updated: 2023/12/30 15:53:03 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_object	*object(t_object_type type, void *element, t_color3 albedo)
 	new->element = element;
 	new->next = NULL;
 	new->albedo = albedo;
+	new->texture.img = NULL;
+	new->bump.img = NULL;
 	new->texture.addr = NULL;
 	new->bump.addr = NULL;
 	return (new);
