@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_checkerboard.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:37:15 by hyuim             #+#    #+#             */
-/*   Updated: 2023/12/27 11:37:44 by hyuim            ###   ########.fr       */
+/*   Updated: 2023/12/30 14:33:03 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ t_color3	get_cb_color(t_cb *cb, t_vec3 vec, t_color3 albedo)
 		return (albedo);
 }
 
-t_bool	hit_cb(t_cb *cb, t_ray *ray, t_hit_rec *rec, t_color3 albedo)
+t_bool	hit_cb(t_object *cb_obj, t_ray *ray, t_hit_rec *rec)
 {
 	double	t;
+	t_cb	*cb;
 
+	cb = cb_obj->element;
 	t = vdot(vminus(cb->point, ray->orig), cb->normal) / \
 	vdot(cb->normal, ray->dir);
 	if (t < rec->tmin || rec->tmax < t)
@@ -39,6 +41,6 @@ t_bool	hit_cb(t_cb *cb, t_ray *ray, t_hit_rec *rec, t_color3 albedo)
 	rec->p = ray_at(ray, t);
 	rec->normal = cb->normal;
 	set_face_normal(ray, rec);
-	rec->albedo = get_cb_color(cb, vminus(rec->p, cb->point), albedo);
+	rec->albedo = get_cb_color(cb, vminus(rec->p, cb->point), cb_obj->albedo);
 	return (TRUE);
 }

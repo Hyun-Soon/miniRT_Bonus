@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:04:34 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/28 12:03:55 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:30:14 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "trace.h"
 
-t_bool	hit(t_object *world, t_ray *ray, t_hit_rec *rec, t_param *par)
+t_bool	hit(t_object *world, t_ray *ray, t_hit_rec *rec)
 {
 	t_bool		hit_anything;
 	t_hit_rec	temp_rec;
@@ -23,7 +23,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_rec *rec, t_param *par)
 	hit_anything = FALSE;
 	while (world)
 	{
-		if (hit_obj(world, ray, &temp_rec, par))
+		if (hit_obj(world, ray, &temp_rec))
 		{
 			hit_anything = TRUE;
 			temp_rec.tmax = temp_rec.t;
@@ -34,22 +34,22 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_rec *rec, t_param *par)
 	return (hit_anything);
 }
 
-t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_rec *rec, t_param *par)
+t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_rec *rec)
 {
 	t_bool	hit_result;
 
 	hit_result = FALSE;
 	if (world->type == SP)
-		hit_result = hit_sp(world->element, ray, rec, world->albedo, par);
+		hit_result = hit_sp(world, ray, rec);
 	else if (world->type == PL)
-		hit_result = hit_pl(world->element, ray, rec, world->albedo);
+		hit_result = hit_pl(world, ray, rec);
 	else if (world->type == CY)
-		hit_result = hit_cy(world->element, ray, rec, world->albedo);
+		hit_result = hit_cy(world, ray, rec);
 	else if (world->type == DK)
-		hit_result = hit_disk(world->element, ray, rec, world->albedo);
+		hit_result = hit_disk(world, ray, rec);
 	else if (world->type == CN)
-		hit_result = hit_cone(world->element, ray, rec, world->albedo);
+		hit_result = hit_cone(world, ray, rec);
 	else if (world->type == CB)
-		hit_result = hit_cb(world->element, ray, rec, world->albedo);
+		hit_result = hit_cb(world, ray, rec);
 	return (hit_result);
 }

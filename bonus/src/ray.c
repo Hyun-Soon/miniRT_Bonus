@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:56:48 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/28 12:09:44 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:36:33 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_color3	ray_color(t_param *par)
 
 	scene = &par->scene;
 	scene->rec = record_init();
-	if (hit(scene->world, &scene->ray, &scene->rec, par))
-		return (phong_lighting(scene, par));
+	if (hit(scene->world, &scene->ray, &scene->rec))
+		return (phong_lighting(scene));
 	else
 	{
 		t = 0.5 * (scene->ray.dir.y + 1.0);

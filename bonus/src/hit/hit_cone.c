@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_cone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:52:37 by hyuim             #+#    #+#             */
-/*   Updated: 2023/12/27 12:15:22 by hyuim            ###   ########.fr       */
+/*   Updated: 2023/12/30 14:31:09 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 #include "utils.h"
 #include "trace.h"
 
-t_bool	hit_cone(t_cone *cn, t_ray *ray, t_hit_rec *rec, t_color3 albedo)
+t_bool	hit_cone(t_object *cn_obj, t_ray *ray, t_hit_rec *rec)
 {
-	t_vec3 oc;
-	double a;
-	double half_b;
-	double c;
-	double sqrtd;
-	double h2;
-	double r2;
-	double root;
-	double discriminant;
+	t_vec3	oc;
+	double	a;
+	double	half_b;
+	double	c;
+	double	sqrtd;
+	double	h2;
+	double	r2;
+	double	root;
+	double	discriminant;
+	t_cone	*cn;
 
+	cn = cn_obj->element;
 	h2 = cn->height * cn->height;
 	r2 = cn->radius * cn->radius;
 	oc = vminus(ray->orig, cn->center);
@@ -49,6 +51,6 @@ t_bool	hit_cone(t_cone *cn, t_ray *ray, t_hit_rec *rec, t_color3 albedo)
 	rec->p = ray_at(ray, root);
 	rec->normal = vunit(vminus(rec->p, vplus(cn->center, vmult(cn->normal, (vdot(vminus(rec->p, cn->center), cn->normal) + (((cn->radius * cn->radius) * vdot(vminus(rec->p, cn->center), cn->normal)) / (cn->height * cn->height)))))));
 	set_face_normal(ray, rec);
-	rec->albedo = albedo;
+	rec->albedo = cn_obj->albedo;
 	return (TRUE);
 }

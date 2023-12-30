@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/29 13:43:01 by dongseo          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:12:50 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,6 @@ struct s_hit_record
 	t_color3	albedo;
 };
 
-struct s_object
-{
-	t_object_type	type;
-	void			*element;
-	void			*next;
-	t_color3		albedo;
-};
-
 struct s_light
 {
 	t_point3	origin;
@@ -129,16 +121,27 @@ struct s_img
 {
 	void	*img;
 	char	*addr;
+	int		width;
+	int		height;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+};
+
+struct s_object
+{
+	t_object_type	type;
+	void			*element;
+	t_color3		albedo;
+	t_img			texture;
+	t_img			bump;
+	void			*next;
 };
 
 struct s_param
 {
 	void	*mlx;
 	t_img	img;
-	t_img	earth_img;
 	void	*win;
 	int		fd;
 	t_scene	scene;

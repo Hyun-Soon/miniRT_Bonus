@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:55:47 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/28 16:47:25 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/30 14:36:19 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vec3	reflect(t_vec3 v, t_vec3 n)
 	return (vminus(v, vmult(n, vdot(v, n) * 2)));
 }
 
-t_bool	in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir, t_param *par)
+t_bool	in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir)
 {
 	t_hit_rec	rec;
 	double		light_len;
@@ -29,7 +29,7 @@ t_bool	in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir, t_param *par
 	vmult(scene->rec.normal, EPSILON)), *light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
-	if (hit(scene->world, &light_ray, &rec, par))
+	if (hit(scene->world, &light_ray, &rec))
 		return (TRUE);
 	*light_dir = (vunit(*light_dir));
 	return (FALSE);
@@ -49,7 +49,7 @@ t_color3	get_specular(t_scene *scene, t_light *light, t_vec3 light_dir)
 	return (specular);
 }
 
-t_color3	point_light_get(t_scene *scene, t_light *light, t_param *par)
+t_color3	point_light_get(t_scene *scene, t_light *light)
 {
 	t_color3	diffuse;
 	t_vec3		light_dir;
@@ -57,7 +57,7 @@ t_color3	point_light_get(t_scene *scene, t_light *light, t_param *par)
 	t_color3	specular;
 	double		brightness;
 
-	if (in_shadow(scene, light, &light_dir, par))
+	if (in_shadow(scene, light, &light_dir))
 		return (color3(0, 0, 0));
 	kd = fmax(vdot(scene->rec.normal, light_dir), 0.0);
 	diffuse = vmult(light->light_color, kd);
@@ -66,7 +66,7 @@ t_color3	point_light_get(t_scene *scene, t_light *light, t_param *par)
 	return (vmult(vplus(diffuse, specular), brightness));
 }
 
-t_color3	phong_lighting(t_scene *scene, t_param *par) //여기까지 했음
+t_color3	phong_lighting(t_scene *scene) //여기까지 했음
 {
 	t_color3	light_color;
 	t_object	*lights;
@@ -77,7 +77,7 @@ t_color3	phong_lighting(t_scene *scene, t_param *par) //여기까지 했음
 	{
 		if (lights->type == LIGHT_POINT)
 			light_color = vplus(light_color, \
-			point_light_get(scene, lights->element, par));
+			point_light_get(scene, lights->element));
 		lights = lights->next;
 	}
 	light_color = vplus(light_color, scene->ambient);

@@ -3,27 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/28 15:03:52 by yusekim          ###   ########.fr       */
+/*   Updated: 2023/12/30 13:59:44 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "map_parse.h"
 #include "key_hook.h"
-
-void	get_map(t_param *par)
-{
-	int		width;
-	int		height;
-
-	par->earth_img.img = mlx_xpm_file_to_image(par->mlx, "./earth.xpm", &width, &height);
-	par->earth_img.addr = mlx_get_data_addr(par->earth_img.img, &par->earth_img.bits_per_pixel, &par->earth_img.line_length, &par->earth_img.endian);
-	if (!par->earth_img.addr)
-		exit(8);
-}
 
 void	scene_parse(t_param *par)
 {
@@ -35,24 +24,21 @@ void	scene_parse(t_param *par)
 	{
 		split = ft_split(temp, ' ');
 		if (ft_strcmp(split[0], "A") == 0)
-			parse_ambient(split, &par->scene);
+			parse_ambient(split, par);
 		else if (ft_strcmp(split[0], "C") == 0)
-			parse_camera(split, &par->scene);
+			parse_camera(split, par);
 		else if (ft_strcmp(split[0], "L") == 0)
-			parse_light(split, &par->scene);
+			parse_light(split, par);
 		else if (ft_strcmp(split[0], "sp") == 0)
-		{
-			get_map(par);
-			parse_sphere(split, &par->scene);
-		}
+			parse_sphere(split, par);
 		else if (ft_strcmp(split[0], "pl") == 0)
-			parse_plane(split, &par->scene);
+			parse_plane(split, par);
 		else if (ft_strcmp(split[0], "cy") == 0)
-			parse_cylinder(split, &par->scene);
+			parse_cylinder(split, par);
 		else if (ft_strcmp(split[0], "cb") == 0)
-			parse_cb(split, &par->scene);
+			parse_cb(split, par);
 		else if (ft_strcmp(split[0], "cn") == 0)
-			parse_cone(split, &par->scene);
+			parse_cone(split, par);
 		else
 			exit(100);
 		split_free(split);
