@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_rotation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:32:43 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/29 14:28:56 by dongseo          ###   ########.fr       */
+/*   Updated: 2023/12/30 21:40:56 by hyuim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+t_vec3	rotate_z(t_vec3 vec, double theta)
+{
+	double	prev_x;
+	double	prev_y;
+	double	prev_z;
+
+	prev_x = vec.x;
+	prev_y = vec.y;
+	prev_z = vec.z;
+	vec.x = prev_x * cos(theta) - prev_y * sin(theta);
+	vec.y = prev_x * sin(theta) + prev_y * cos(theta);
+	vec.z = prev_z;
+	return (vec);
+}
 
 t_vec3	rotate_y(t_vec3 vec, double theta)
 {
