@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 17:11:50 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/01 13:41:09 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef int					t_object_type;
 # define LIGHT_POINT 1
 # define EPSILON 1e-6 //0.000001
 # define LUMEN 3 //이 값을 조절하여 장면의 밝기를 조절할 수 있다.
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 320
+# define HEIGHT 240
 
 struct s_vec3
 {

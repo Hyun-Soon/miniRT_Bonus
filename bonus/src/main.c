@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/30 13:59:44 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/01 13:26:45 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	scene_parse(t_param *par)
 			parse_cb(split, par);
 		else if (ft_strcmp(split[0], "cn") == 0)
 			parse_cone(split, par);
+		else if (ft_strcmp(split[0], "dk") == 0)
+			parse_disk(split, par);
+		else if (get_split_cnt(split) == 1 && ft_strlen(split[0]) == 1)
+			;
 		else
 			exit(100);
 		split_free(split);
@@ -76,6 +80,12 @@ void	init(t_param *par, char *file_name)
 	scene_parse(par);
 }
 
+int	win_close(t_param *par)
+{
+	mlx_destroy_window(par->mlx, par->win);
+	exit(0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_param	par;
@@ -88,5 +98,6 @@ int	main(int argc, char *argv[])
 	init(&par, argv[1]);
 	snapshot(&par);
 	mlx_key_hook(par.win, key_hook, &par);
+	mlx_hook(par.win, 17, 0, win_close, &par);
 	mlx_loop(par.mlx);
 }

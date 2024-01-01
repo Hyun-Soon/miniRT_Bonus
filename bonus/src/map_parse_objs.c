@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_objs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 17:30:33 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/01 13:40:55 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ void	parse_sphere(char **line, t_param *par)
 		get_maps(par, &sp_obj->bump, line[5]);
 	}
 	oadd(&par->scene.world, sp_obj);
+}
+
+void	parse_disk(char **line, t_param *par)
+{
+	double		radius;
+	t_point3	point;
+	t_color3	color;
+	t_vec3		normal;
+
+	if (get_split_cnt(line) != 5)
+		exit(6);
+	point = get_tuple(line[1]);
+	normal = get_normal(line[2]);
+	radius = get_uvalue(line[3]) / 2;
+	color = get_color(line[4]);
+	oadd(&par->scene.world, object(DK, disk(point, normal, radius), color));
 }
 
 void	parse_cylinder(char **line, t_param *par)
