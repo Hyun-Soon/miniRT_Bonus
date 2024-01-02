@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:30:33 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 16:44:14 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/02 19:22:37 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		parse_camera(char **line, t_param *par);
 void		parse_light(char **line, t_param *par);
 double		get_uvalue(char *line);
 void		parse_sphere(char **line, t_param *par);
-// void		parse_sphere(char **line, t_param *par, t_param *par);
 void		parse_cylinder(char **line, t_param *par);
 void		parse_plane(char **line, t_param *par);
 void		parse_cone(char **line, t_param *par);
