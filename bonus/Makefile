@@ -18,6 +18,7 @@ CC = cc
 MLX = -lmlx -framework OpenGL -framework Appkit
 CFLAGS = -I./include  -Wall -Wextra -Werror
 SRCS = ./src/main.c \
+		./src/init.c \
 		./src/vec3_utils.c \
 		./src/vec3_ari_ops.c \
 		./src/vec3_rotation.c \
@@ -30,6 +31,7 @@ SRCS = ./src/main.c \
 		./src/phong_lighting.c \
 		./src/map_parse.c \
 		./src/map_parse_objs.c \
+		./src/map_parse_bonus_objs.c \
 		./src/print.c \
 		./src/key_hook.c \
 		./src/parse_utils.c \
@@ -37,6 +39,7 @@ SRCS = ./src/main.c \
 		./src/anti_aliasing.c \
 		./src/hit/hit.c \
 		./src/hit/hit_sphere.c \
+		./src/hit/hit_sphere_utils.c \
 		./src/hit/hit_plane.c \
 		./src/hit/hit_cone.c \
 		./src/hit/hit_cylinder.c \

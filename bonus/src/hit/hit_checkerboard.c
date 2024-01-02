@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_checkerboard.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:37:15 by hyuim             #+#    #+#             */
-/*   Updated: 2024/01/02 13:33:01 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:46:32 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_color3	get_cb_color(t_cb *cb, t_vec3 vec, t_color3 albedo)
 
 	u = cb->dir;
 	v = vcross(cb->normal, u);
-	if (((unsigned int)round(vdot(vec, u)) + (unsigned int)round(vdot(vec, v))) % 2 == 1)
+	if (((unsigned int)round(vdot(vec, u)) + \
+		(unsigned int)round(vdot(vec, v))) % 2 == 1)
 		return (color3(1, 1, 1));
 	else
 		return (albedo);

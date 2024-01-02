@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_create2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:36:23 by hyuim             #+#    #+#             */
-/*   Updated: 2023/12/28 11:27:49 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:45:50 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ t_cone	*cone(t_point3 center, t_vec3 normal, double radius, double h)
 {
 	t_cone	*cone;
 
-	if (!(cone = (t_cone *)malloc(sizeof(t_cone))))
+	cone = (t_cone *)malloc(sizeof(t_cone));
+	if (!cone)
 		return (NULL);
-
 	cone->center = center;
 	cone->normal = vunit(normal);
 	cone->radius = radius;

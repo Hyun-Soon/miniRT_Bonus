@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/02 14:17:56 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:39:57 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "map_parse.h"
 #include "key_hook.h"
+
+void	parse_bonus(char **split, t_param *par)
+{
+	if (ft_strcmp(split[0], "cb") == 0)
+		parse_cb(split, par);
+	else if (ft_strcmp(split[0], "cn") == 0)
+		parse_cone(split, par);
+	else if (ft_strcmp(split[0], "dk") == 0)
+		parse_disk(split, par);
+	else if (ft_strcmp(split[0], "lb") == 0)
+		parse_light_bulb(split, par);
+	else if (get_split_cnt(split) == 1 && ft_strlen(split[0]) == 1)
+		;
+	else
+		exit(100);
+}
 
 void	scene_parse(t_param *par)
 {
@@ -35,62 +51,12 @@ void	scene_parse(t_param *par)
 			parse_plane(split, par);
 		else if (ft_strcmp(split[0], "cy") == 0)
 			parse_cylinder(split, par);
-		else if (ft_strcmp(split[0], "cb") == 0)
-			parse_cb(split, par);
-		else if (ft_strcmp(split[0], "cn") == 0)
-			parse_cone(split, par);
-		else if (ft_strcmp(split[0], "dk") == 0)
-			parse_disk(split, par);
-		else if (ft_strcmp(split[0], "lb") == 0)
-			parse_light_bulb(split, par);
-		else if (get_split_cnt(split) == 1 && ft_strlen(split[0]) == 1)
-			;
 		else
-			exit(100);
+			parse_bonus(split, par);
 		split_free(split);
 		free(temp);
 		temp = get_next_line(par->fd);
 	}
-}
-
-void	init_image(t_param *par, t_bool flag)
-{
-	t_img	*tar_img;
-
-	if (flag == AA)
-		tar_img = &par->aa_img;
-	else
-		tar_img = &par->img;
-	tar_img->height = HEIGHT;
-	tar_img->width = WIDTH;
-	tar_img->img = mlx_new_image(par->mlx, tar_img->width, tar_img->height);
-	if (!tar_img->img)
-		exit(1);
-	tar_img->addr = mlx_get_data_addr(tar_img->img, &tar_img->bits_per_pixel,
-			&tar_img->line_length, &tar_img->endian);
-	if (!tar_img->addr)
-		exit(1);
-}
-
-void	init(t_param *par, char *file_name)
-{
-	par->fd = open(file_name, O_RDONLY);
-	if (par->fd < 0)
-	{
-		perror("miniRT");
-		exit(1);
-	}
-	par->mlx = mlx_init();
-	par->win = mlx_new_window(par->mlx, WIDTH, HEIGHT, "miniRT");
-	par->aa_flag = FALSE;
-	init_image(par, NAA);
-	init_image(par, AA);
-	ft_memset(&par->scene, 0, sizeof(t_scene));
-	par->scene.canvas.width = WIDTH;
-	par->scene.canvas.height = HEIGHT;
-	par->scene.canvas.aspect_ratio = (double)WIDTH / (double)HEIGHT;
-	scene_parse(par);
-	olast(par->scene.world)->next = par->scene.object;
 }
 
 int	win_close(t_param *par)

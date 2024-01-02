@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:02:13 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 14:36:25 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/02 17:44:59 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ t_color3	point_light_get(t_scene *scene, t_light *light);
 // t_bool		in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir);
 t_bool		in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir);
 
-t_bool		hit_cy(t_object *cy_obj, t_ray *ray, t_hit_rec *rec);
+t_bool		hit_cy(t_cylinder *cy, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
 t_bool		hit_pl(t_object *pl_obj, t_ray *ray, t_hit_rec *rec);
 t_bool		hit_disk(t_object *dk_obj, t_ray *ray, t_hit_rec *rec);
 t_bool		hit_sp(t_object *sp_obj, t_ray *ray, t_hit_rec *rec);
 t_bool		hit_cone(t_object *cn_obj, t_ray *ray, t_hit_rec *rec);
 t_bool		hit_cb(t_object *cb_obj, t_ray *ray, t_hit_rec *rec);
+
+t_vec3		get_bump(t_sphere *sp, t_img *img, t_hit_rec *rec);
+t_color3	get_albedo(t_sphere *sp, t_img *img, t_hit_rec *rec, \
+						t_color3 albedo);
 
 #endif

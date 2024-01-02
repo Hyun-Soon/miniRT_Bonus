@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:02:13 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/27 11:59:04 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/02 16:04:02 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_bool		hit_cy(t_cylinder *cy, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
 t_bool		hit_pl(t_plane *pl, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
 t_bool		hit_disk(t_disk *dk, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
 t_bool		hit_sp(t_sphere *sp, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
-t_bool	hit_cone(t_cone *cn, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
+t_bool		hit_cone(t_cone *cn, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
 t_bool		hit_cb(t_cb *cb, t_ray *ray, t_hit_rec *rec, t_color3 albedo);
 
 #endif

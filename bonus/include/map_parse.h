@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:30:33 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 14:21:38 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:44:14 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		parse_cone(char **line, t_param *par);
 void		parse_cb(char **line, t_param *par);
 void		parse_disk(char **line, t_param *par);
 void		parse_light_bulb(char **line, t_param *par);
+void		get_maps(t_param *par, t_img *img, char *filepath);
 
 void		split_free(char **split);
 
@@ -37,5 +38,7 @@ t_vec3		get_tuple(char *line);
 void		split_free(char **split);
 double		get_ratio(char *line);
 t_vec3		get_normal(char *line);
-
+void		init(t_param *par, char *file_name);
+void		init_image(t_param *par, t_bool flag);
+void		scene_parse(t_param *par);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   anti_aliasing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 14:23:59 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 13:11:44 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:31:21 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,13 @@ void	anti_aliasing(t_param *par)
 	return ;
 }
 
-void	do_anti_aliasing(t_param *par, t_img *tar_img)
+void	divide_ray(t_param *par, t_img *tar_img, t_color3 **screen)
 {
-	t_color3	**screen;
-	t_color3	pixel_color;
 	double		u;
 	double		v;
 	int			i;
 	int			j;
 
-	screen = malloc(sizeof(t_color3 *) * 2 * tar_img->height);
-	if (!screen)
-		exit(1);
-	i = -1;
-	while (++i < 2 * tar_img->height)
-	{
-		screen[i] = malloc(sizeof(t_color3) * 2 * tar_img->width);
-		if (!screen[i])
-			exit(1);
-	}
 	j = -1;
 	while (++j < tar_img->height * 2)
 	{
@@ -67,14 +55,45 @@ void	do_anti_aliasing(t_param *par, t_img *tar_img)
 			screen[j][i] = ray_color(par);
 		}
 	}
+}
+
+t_color3	**init_screen(t_img *tar_img)
+{
+	t_color3	**screen;
+	int			i;
+
+	screen = malloc(sizeof(t_color3 *) * 2 * tar_img->height);
+	if (!screen)
+		exit(1);
+	i = -1;
+	while (++i < 2 * tar_img->height)
+	{
+		screen[i] = malloc(sizeof(t_color3) * 2 * tar_img->width);
+		if (!screen[i])
+			exit(1);
+	}
+	return (screen);
+}
+
+void	do_anti_aliasing(t_param *par, t_img *tar_img)
+{
+	t_color3	**screen;
+	t_color3	pixel_color;
+	int			i;
+	int			j;
+
+	screen = init_screen(tar_img);
+	divide_ray(par, tar_img, screen);
 	j = 0;
 	while (j < tar_img->height * 2)
 	{
 		i = 0;
 		while (i < tar_img->width * 2)
 		{
-			pixel_color = vmult(vplus(vplus(vplus(screen[j][i], screen[j][i + 1]), screen[j + 1][i]), screen[j + 1][i + 1]), 0.25);
-			my_mlx_pixel_put(tar_img, i / 2, j / 2, convert_color3_int(pixel_color));
+			pixel_color = vmult(vplus(vplus(vplus(screen[j][i], \
+			screen[j][i + 1]), screen[j + 1][i]), screen[j + 1][i + 1]), 0.25);
+			my_mlx_pixel_put(tar_img, i / 2, j / 2, \
+			convert_color3_int(pixel_color));
 			i += 2;
 		}
 		j += 2;

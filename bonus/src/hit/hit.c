@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:04:34 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 14:23:27 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:50:49 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_rec *rec)
 	else if (world->type == PL)
 		hit_result = hit_pl(world, ray, rec);
 	else if (world->type == CY)
-		hit_result = hit_cy(world, ray, rec);
+		hit_result = hit_cy(world->element, ray, rec, world->albedo);
 	else if (world->type == DK)
 		hit_result = hit_disk(world, ray, rec);
 	else if (world->type == CN)

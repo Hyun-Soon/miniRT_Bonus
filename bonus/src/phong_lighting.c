@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:55:47 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 15:32:16 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 16:31:50 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_color3	point_light_get(t_scene *scene, t_light *light)
 	return (vmult(vplus(diffuse, specular), brightness));
 }
 
-t_color3	phong_lighting(t_scene *scene) //여기까지 했음
+t_color3	phong_lighting(t_scene *scene)
 {
 	t_color3	light_color;
 	t_object	*lights;
