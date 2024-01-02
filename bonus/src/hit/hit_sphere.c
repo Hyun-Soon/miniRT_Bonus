@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:17:38 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 13:33:21 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 15:32:06 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ t_bool	hit_sp(t_object *sp_obj, t_ray *ray, t_hit_rec *rec)
 	rec->p = ray_at(ray, root);
 	rec->normal = get_bump(sp, &sp_obj->bump, rec);
 	set_face_normal(ray, rec);
+	// if (sp_obj->type == LB)
+	// 	rec->normal = vmult(rec->normal, -1);
 	rec->albedo = get_albedo(sp, &sp_obj->texture, rec, sp_obj->albedo);
 	return (TRUE);
 }

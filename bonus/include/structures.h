@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 13:32:56 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 15:25:08 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ typedef int					t_object_type;
 # define DK 3
 # define CN 4
 # define CB 5
+# define LB 6
 # define LIGHT_POINT 1
 # define EPSILON 1e-6 //0.000001
 # define LUMEN 3 //이 값을 조절하여 장면의 밝기를 조절할 수 있다.
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800
+# define HEIGHT 600
 # define NAA 0
 # define AA 1
 
@@ -109,6 +110,7 @@ struct s_scene
 	t_canvas		canvas;
 	t_camera		camera;
 	t_object		*world;
+	t_object		*object;
 	t_object		*light;
 	t_color3		ambient;
 	double			amb_ratio;

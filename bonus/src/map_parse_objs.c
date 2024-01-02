@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 13:45:17 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 15:37:37 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,34 @@ void	parse_sphere(char **line, t_param *par)
 		get_maps(par, &sp_obj->texture, line[4]);
 		get_maps(par, &sp_obj->bump, line[5]);
 	}
+	oadd(&par->scene.object, sp_obj);
+}
+
+void	parse_light_bulb(char **line, t_param *par)
+{
+	double		radius;
+	t_point3	point;
+	t_color3	color;
+	int			split_cnt;
+	t_object	*sp_obj;
+	double		ratio;
+
+	split_cnt = get_split_cnt(line);
+	if (split_cnt != 4 && split_cnt != 6)
+		exit(5);
+	point = get_tuple(line[1]);
+	radius = get_uvalue(line[2]) / 2;
+	color = get_color(line[3]);
+	ratio = 0.3;
+	sp_obj = object(LB, sphere(point, radius), color);
+	if (split_cnt == 6)
+	{
+		get_maps(par, &sp_obj->texture, line[4]);
+		get_maps(par, &sp_obj->bump, line[5]);
+	}
 	oadd(&par->scene.world, sp_obj);
+	oadd(&par->scene.light, object(LIGHT_POINT, \
+	light_point(point, ratio, color), color3(0, 0, 0)));
 }
 
 void	parse_disk(char **line, t_param *par)
@@ -80,7 +107,7 @@ void	parse_disk(char **line, t_param *par)
 	normal = get_normal(line[2]);
 	radius = get_uvalue(line[3]) / 2;
 	color = get_color(line[4]);
-	oadd(&par->scene.world, object(DK, disk(point, normal, radius), color));
+	oadd(&par->scene.object, object(DK, disk(point, normal, radius), color));
 }
 
 void	parse_cylinder(char **line, t_param *par)
@@ -98,12 +125,12 @@ void	parse_cylinder(char **line, t_param *par)
 	radius = get_uvalue(line[3]) / 2;
 	height = get_uvalue(line[4]);
 	color = get_color(line[5]);
-	oadd(&par->scene.world, object(CY, \
+	oadd(&par->scene.object, object(CY, \
 	cylinder(point, normal, height, radius), color));
 	point = vplus(point, vmult(normal, height / 2));
-	oadd(&par->scene.world, object(DK, disk(point, normal, radius), color));
+	oadd(&par->scene.object, object(DK, disk(point, normal, radius), color));
 	point = vplus(point, vmult(normal, -height));
-	oadd(&par->scene.world, object(DK, disk(point, normal, radius), color));
+	oadd(&par->scene.object, object(DK, disk(point, normal, radius), color));
 }
 
 void	parse_plane(char **line, t_param *par)
@@ -117,7 +144,7 @@ void	parse_plane(char **line, t_param *par)
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	color = get_color(line[3]);
-	oadd(&par->scene.world, object(PL, plane(point, normal), color));
+	oadd(&par->scene.object, object(PL, plane(point, normal), color));
 }
 
 void	parse_cb(char **line, t_param *par)
@@ -135,7 +162,7 @@ void	parse_cb(char **line, t_param *par)
 	if (vdot(direction, normal) != 0)
 		exit(321);
 	color = get_color(line[4]);
-	oadd(&par->scene.world, object(CB, checkerboard(point, normal, direction), color));
+	oadd(&par->scene.object, object(CB, checkerboard(point, normal, direction), color));
 }
 
 void	parse_cone(char **line, t_param *par)
@@ -153,12 +180,6 @@ void	parse_cone(char **line, t_param *par)
 	radius = get_uvalue(line[3]);
 	height = get_uvalue(line[4]);
 	color = get_color(line[5]);
-	oadd(&par->scene.world, object(CN, cone(point, normal, radius, height), color));
-	oadd(&par->scene.world, object(DK, disk(vplus(point, vmult(normal, height)), normal, radius), color));
-
-
-	//oadd(&scene->world, object(CN, \
-	//cone(point, normal, height, radius), color));
-	//point = vplus(point, vmult(normal, -height));
-	//oadd(&scene->world, object(DK, disk(point, normal, radius), color));
+	oadd(&par->scene.object, object(CN, cone(point, normal, radius, height), color));
+	oadd(&par->scene.object, object(DK, disk(vplus(point, vmult(normal, height)), normal, radius), color));
 }

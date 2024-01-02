@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:04:34 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/30 14:30:14 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/02 14:23:27 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_rec *rec)
 	t_bool	hit_result;
 
 	hit_result = FALSE;
-	if (world->type == SP)
+	if (world->type == SP || world->type == LB)
 		hit_result = hit_sp(world, ray, rec);
 	else if (world->type == PL)
 		hit_result = hit_pl(world, ray, rec);

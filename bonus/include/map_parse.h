@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:30:33 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 13:26:30 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 14:21:38 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void		parse_plane(char **line, t_param *par);
 void		parse_cone(char **line, t_param *par);
 void		parse_cb(char **line, t_param *par);
 void		parse_disk(char **line, t_param *par);
+void		parse_light_bulb(char **line, t_param *par);
+
 void		split_free(char **split);
 
 int			check_valid_double(const char *str);

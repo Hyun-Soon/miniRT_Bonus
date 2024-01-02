@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:55:47 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 13:33:33 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 15:32:16 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ t_bool	in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir)
 	t_ray		light_ray;
 
 	*light_dir = vminus(light->origin, scene->rec.p);
+	if (vdot(*light_dir, scene->rec.normal) < 0.0)
+		scene->rec.normal = vmult(scene->rec.normal, -1.0);
 	light_len = vlength(*light_dir);
 	light_ray = ray(vplus(scene->rec.p, \
 	vmult(scene->rec.normal, EPSILON)), *light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
-	if (hit(scene->world, &light_ray, &rec))
+	if (hit(scene->object, &light_ray, &rec))
 		return (TRUE);
 	*light_dir = (vunit(*light_dir));
 	return (FALSE);

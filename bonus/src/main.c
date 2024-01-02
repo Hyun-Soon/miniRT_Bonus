@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/02 12:24:02 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 14:17:56 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	scene_parse(t_param *par)
 			parse_cone(split, par);
 		else if (ft_strcmp(split[0], "dk") == 0)
 			parse_disk(split, par);
+		else if (ft_strcmp(split[0], "lb") == 0)
+			parse_light_bulb(split, par);
 		else if (get_split_cnt(split) == 1 && ft_strlen(split[0]) == 1)
 			;
 		else
@@ -88,6 +90,7 @@ void	init(t_param *par, char *file_name)
 	par->scene.canvas.height = HEIGHT;
 	par->scene.canvas.aspect_ratio = (double)WIDTH / (double)HEIGHT;
 	scene_parse(par);
+	olast(par->scene.world)->next = par->scene.object;
 }
 
 int	win_close(t_param *par)
