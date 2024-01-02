@@ -2,6 +2,7 @@
 	"files.associations": {
 		"scene.h": "c",
 		"utils.h": "c",
-		"map_parse.h": "c"
+		"map_parse.h": "c",
+		"key_hook.h": "c"
 	}
 }

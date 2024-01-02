@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/27 11:44:19 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/01 11:02:04 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void	init(t_param *par, char *file_name)
 	scene_parse(par);
 }
 
+int	win_close(t_param *par)
+{
+	mlx_destroy_window(par->mlx, par->win);
+	exit(0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_param	par;
@@ -88,5 +94,6 @@ int	main(int argc, char *argv[])
 	init(&par, argv[1]);
 	snapshot(&par);
 	mlx_key_hook(par.win, key_hook, &par);
+	mlx_hook(par.win, 17, 0, win_close, &par);
 	mlx_loop(par.mlx);
 }
