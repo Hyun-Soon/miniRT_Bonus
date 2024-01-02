@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/27 11:09:02 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/02 19:21:02 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct s_scene		t_scene;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
 typedef struct s_disk		t_disk;
-typedef struct s_cone		t_cone;
-typedef struct s_cb			t_cb;
 typedef struct s_param		t_param;
 typedef struct s_img		t_img;
 typedef int					t_bool;
@@ -40,8 +38,6 @@ typedef int					t_object_type;
 # define PL 1
 # define CY 2
 # define DK 3
-# define CN 4
-# define CB 5
 # define LIGHT_POINT 1
 # define EPSILON 1e-6 //0.000001
 # define LUMEN 3 //이 값을 조절하여 장면의 밝기를 조절할 수 있다.
