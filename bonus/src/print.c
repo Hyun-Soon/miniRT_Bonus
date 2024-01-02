@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:25:55 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/28 12:01:27 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 09:39:31 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	convert_color3_int(t_color3 pixel_color)
 	return (color);
 }
 
-void	snapshot(t_param *par)
+void	snapshot(t_param *par, t_img *tar_img)
 {
 	int			i;
 	int			j;
@@ -38,16 +38,16 @@ void	snapshot(t_param *par)
 	t_color3	pixel_color;
 
 	j = -1;
-	while (++j < par->scene.canvas.height)
+	while (++j < tar_img->height)
 	{
 		i = -1;
-		while (++i < par->scene.canvas.width)
+		while (++i < tar_img->width)
 		{
-			u = (double)i / (par->scene.canvas.width - 1);
-			v = (double)j / (par->scene.canvas.height - 1);
+			u = (double)i / (tar_img->width - 1);
+			v = (double)j / (tar_img->height - 1);
 			par->scene.ray = ray_primary(&par->scene.camera, u, v);
 			pixel_color = ray_color(par);
-			my_mlx_pixel_put(&par->img, i, j, convert_color3_int(pixel_color));
+			my_mlx_pixel_put(tar_img, i, j, convert_color3_int(pixel_color));
 		}
 	}
 	mlx_put_image_to_window(par->mlx, par->win, par->img.img, 0, 0);

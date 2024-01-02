@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:55:47 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 10:42:35 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/02 13:33:33 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool	in_shadow(t_scene *scene, t_light *light, t_vec3 *light_dir)
 	*light_dir = vminus(light->origin, scene->rec.p);
 	light_len = vlength(*light_dir);
 	light_ray = ray(vplus(scene->rec.p, \
-	vmult(scene->rec.o_normal, EPSILON)), *light_dir);
+	vmult(scene->rec.normal, EPSILON)), *light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
 	if (hit(scene->world, &light_ray, &rec))

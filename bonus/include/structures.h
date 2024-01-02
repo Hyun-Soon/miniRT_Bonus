@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/01 17:13:42 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/02 13:32:56 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ typedef int					t_object_type;
 # define LIGHT_POINT 1
 # define EPSILON 1e-6 //0.000001
 # define LUMEN 3 //이 값을 조절하여 장면의 밝기를 조절할 수 있다.
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1920
+# define HEIGHT 1080
+# define NAA 0
+# define AA 1
 
 struct s_vec3
 {
@@ -88,12 +90,10 @@ struct s_hit_record
 {
 	t_point3	p;
 	t_vec3		normal;
-	t_vec3		o_normal;
 	double		tmin;
 	double		tmax;
 	double		t;
 	t_bool		front_face;
-	t_bool		o_front_face;
 	t_color3	albedo;
 };
 
@@ -141,6 +141,8 @@ struct s_param
 {
 	void	*mlx;
 	t_img	img;
+	t_img	aa_img;
+	t_bool	aa_flag;
 	void	*win;
 	int		fd;
 	t_scene	scene;
@@ -150,7 +152,7 @@ struct s_sphere
 {
 	t_point3	center;
 	double		radius;
-	double		radius2; 
+	double		radius2;
 };
 
 struct s_plane

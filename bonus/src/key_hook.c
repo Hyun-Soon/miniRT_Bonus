@@ -6,7 +6,7 @@
 /*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 12:00:34 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/26 17:43:30 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 09:40:16 by yusekim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	move_camera(int keycode, t_param *par)
 		par->scene.camera.orig = \
 		vplus(par->scene.camera.orig, par->scene.camera.forward);
 	camera(&par->scene.camera, par->scene.canvas.aspect_ratio);
-	snapshot(par);
+	snapshot(par, &par->img);
 }
 
 void	rotate_camera(int keycode, t_param *par)
@@ -50,7 +50,7 @@ void	rotate_camera(int keycode, t_param *par)
 	else if (keycode == KEY_DOWN)
 		rotate_h(&par->scene.camera, -theta);
 	camera(&par->scene.camera, par->scene.canvas.aspect_ratio);
-	snapshot(par);
+	snapshot(par, &par->img);
 }
 
 t_bool	is_move_key(int keycode)
@@ -76,9 +76,16 @@ int	key_hook(int keycode, t_param *par)
 		mlx_destroy_window(par->mlx, par->win);
 		exit(0);
 	}
+	if (keycode == KEY_SPACE)
+	{
+		anti_aliasing(par);
+		return (0);
+	}
 	else if (is_move_key(keycode))
 		move_camera(keycode, par);
 	else if (is_rotate_key(keycode))
 		rotate_camera(keycode, par);
+	if (keycode != KEY_SPACE)
+		par->aa_flag = FALSE;
 	return (0);
 }

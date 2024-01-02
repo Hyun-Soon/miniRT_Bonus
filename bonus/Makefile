@@ -16,7 +16,7 @@ LINE_CLEAR  =   "\x1b[1A\x1b[M"
 NAME = miniRT
 CC = cc
 MLX = -lmlx -framework OpenGL -framework Appkit
-CFLAGS = -I./include #-Wall -Wextra -Werror
+CFLAGS = -I./include  -Wall -Wextra -Werror
 SRCS = ./src/main.c \
 		./src/vec3_utils.c \
 		./src/vec3_ari_ops.c \
@@ -34,6 +34,7 @@ SRCS = ./src/main.c \
 		./src/key_hook.c \
 		./src/parse_utils.c \
 		./src/parse_utils2.c \
+		./src/anti_aliasing.c \
 		./src/hit/hit.c \
 		./src/hit/hit_sphere.c \
 		./src/hit/hit_plane.c \
