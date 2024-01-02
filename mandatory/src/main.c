@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/01 11:02:04 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/02 17:59:56 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ void	scene_parse(t_param *par)
 			parse_plane(split, &par->scene);
 		else if (ft_strcmp(split[0], "cy") == 0)
 			parse_cylinder(split, &par->scene);
-		else if (ft_strcmp(split[0], "cb") == 0)
-			parse_cb(split, &par->scene);
-		else if (ft_strcmp(split[0], "cn") == 0)
-			parse_cone(split, &par->scene);
 		else
 			exit(100);
 		split_free(split);

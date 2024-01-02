@@ -24,7 +24,6 @@ SRCS = ./src/main.c \
 		./src/vec3_vec_ops.c \
 		./src/ray.c \
 		./src/object_create.c \
-		./src/object_create2.c \
 		./src/normal.c \
 		./src/object_utils.c \
 		./src/phong_lighting.c \
@@ -37,9 +36,7 @@ SRCS = ./src/main.c \
 		./src/hit/hit.c \
 		./src/hit/hit_sphere.c \
 		./src/hit/hit_plane.c \
-		./src/hit/hit_cone.c \
 		./src/hit/hit_cylinder.c \
-		./src/hit/hit_checkerboard.c \
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = ./libft/libft.a

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:30:33 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/27 11:55:06 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/02 18:00:51 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ double		get_uvalue(char *line);
 void		parse_sphere(char **line, t_scene *scene);
 void		parse_cylinder(char **line, t_scene *scene);
 void		parse_plane(char **line, t_scene *scene);
-void		parse_cone(char **line, t_scene *scene);
-void		parse_cb(char **line, t_scene *scene);
 void		split_free(char **split);
 
 int			check_valid_double(const char *str);

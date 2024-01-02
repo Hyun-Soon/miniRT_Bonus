@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 16:33:11 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/02 18:00:44 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,45 +59,4 @@ void	parse_light_bulb(char **line, t_param *par)
 	oadd(&par->scene.world, sp_obj);
 	oadd(&par->scene.light, object(LIGHT_POINT, \
 	light_point(point, 0.1, color), color3(0, 0, 0)));
-}
-
-void	parse_cb(char **line, t_param *par)
-{
-	t_point3	point;
-	t_vec3		normal;
-	t_vec3		direction;
-	t_color3	color;
-
-	if (get_split_cnt(line) != 5)
-		exit(7);
-	point = get_tuple(line[1]);
-	normal = get_normal(line[2]);
-	direction = get_tuple(line[3]);
-	if (vdot(direction, normal) != 0)
-		exit(321);
-	color = get_color(line[4]);
-	oadd(&par->scene.object, \
-	object(CB, checkerboard(point, normal, direction), color));
-}
-
-void	parse_cone(char **line, t_param *par)
-{
-	double		radius;
-	double		height;
-	t_point3	point;
-	t_color3	color;
-	t_vec3		normal;
-
-	if (get_split_cnt(line) != 6)
-		exit(6);
-	point = get_tuple(line[1]);
-	normal = get_normal(line[2]);
-	radius = get_uvalue(line[3]);
-	height = get_uvalue(line[4]);
-	color = get_color(line[5]);
-	oadd(&par->scene.object, \
-	object(CN, cone(point, normal, radius, height), color));
-	oadd(&par->scene.object, \
-	object(DK, disk(vplus(point, vmult(normal, height)), \
-	normal, radius), color));
 }
