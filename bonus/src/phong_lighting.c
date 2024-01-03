@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:55:47 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 16:31:50 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 11:33:49 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,18 @@ t_color3	point_light_get(t_scene *scene, t_light *light)
 	t_vec3		light_dir;
 	double		kd;
 	t_color3	specular;
-	double		brightness;
+	t_vec3		cam_dir;
 
 	if (in_shadow(scene, light, &light_dir))
-		return (color3(0, 0, 0));
+	{
+		cam_dir = vunit(vminus(scene->camera.orig, scene->rec.p));
+		return (vmult(color3(1, 1, 1), fmax(vdot(cam_dir, scene->rec.normal) \
+		* 0.1, 0)));
+	}
 	kd = fmax(vdot(scene->rec.normal, light_dir), 0.0);
 	diffuse = vmult(light->light_color, kd);
 	specular = get_specular(scene, light, light_dir);
-	brightness = light->bright_ratio * LUMEN;
-	return (vmult(vplus(diffuse, specular), brightness));
+	return (vmult(vplus(diffuse, specular), light->bright_ratio * LUMEN));
 }
 
 t_color3	phong_lighting(t_scene *scene)

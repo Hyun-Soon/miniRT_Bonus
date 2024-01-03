@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/03 10:45:33 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 11:27:49 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	parse_cb(char **line, t_param *par)
 	if (vdot(direction, normal) != 0)
 		ft_perror("Wrong input err");
 	color = get_color(line[4]);
-	oadd(&par->scene.world, object(CB, \
+	oadd(&par->scene.object, object(CB, \
 	checkerboard(point, normal, direction), color));
 }
 
@@ -94,8 +94,8 @@ void	parse_cone(char **line, t_param *par)
 	radius = get_uvalue(line[3]);
 	height = get_uvalue(line[4]);
 	color = get_color(line[5]);
-	oadd(&par->scene.world, object(CN, \
+	oadd(&par->scene.object, object(CN, \
 	cone(point, normal, radius, height), color));
-	oadd(&par->scene.world, object(DK, \
+	oadd(&par->scene.object, object(DK, \
 	disk(vplus(point, vmult(normal, height)), normal, radius), color));
 }
