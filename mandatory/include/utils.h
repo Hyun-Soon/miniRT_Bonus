@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:03:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/26 17:59:32 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:39:10 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void		oadd(t_object **list, t_object *new);
 t_object	*olast(t_object *list);
 t_vec3		rotate_y(t_vec3 vec, double theta);
 void		rotate_h(t_camera *cam, double theta);
-
+void		ft_perror(char *msg);
+int			rt_ft_atoi(const char *str);
 #endif

@@ -6,13 +6,19 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/02 16:39:57 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:32:10 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "map_parse.h"
 #include "key_hook.h"
+
+void	ft_perror(char *msg)
+{
+	printf("%s\n", msg);
+	exit(1);
+}
 
 void	parse_bonus(char **split, t_param *par)
 {
@@ -27,7 +33,7 @@ void	parse_bonus(char **split, t_param *par)
 	else if (get_split_cnt(split) == 1 && ft_strlen(split[0]) == 1)
 		;
 	else
-		exit(100);
+		ft_perror("wrong input err");
 }
 
 void	scene_parse(t_param *par)

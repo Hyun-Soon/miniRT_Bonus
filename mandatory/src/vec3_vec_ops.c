@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_vec_ops.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 18:06:48 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/26 18:07:08 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:38:05 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ t_vec3	vunit(t_vec3 vec)
 
 	len = vlength(vec);
 	if (len == 0)
-	{
-		printf("miniRT: Error: Devider is 0");
-		exit(1);
-	}
+		ft_perror("miniRT: Error: Devider is 0");
 	vec.x /= len;
 	vec.y /= len;
 	vec.z /= len;

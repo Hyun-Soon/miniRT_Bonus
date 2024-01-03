@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 18:12:03 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:36:53 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	get_uvalue(char *line)
 
 	diameter = atodb(line);
 	if (diameter <= 0)
-		exit(4);
+		ft_perror("Wrong input err");
 	return (diameter);
 }
 
@@ -32,7 +32,7 @@ void	parse_sphere(char **line, t_scene *scene)
 	t_color3	color;
 
 	if (get_split_cnt(line) != 4)
-		exit(5);
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	radius = get_uvalue(line[2]) / 2;
 	color = get_color(line[3]);
@@ -48,7 +48,7 @@ void	parse_cylinder(char **line, t_scene *scene)
 	t_vec3		normal;
 
 	if (get_split_cnt(line) != 6)
-		exit(6);
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	radius = get_uvalue(line[3]) / 2;
@@ -69,7 +69,7 @@ void	parse_plane(char **line, t_scene *scene)
 	t_vec3		normal;
 
 	if (get_split_cnt(line) != 4)
-		exit(7);
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	color = get_color(line[3]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:42:11 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/26 17:52:30 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:37:05 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	parse_ambient(char **line, t_scene *scene)
 {
 	if (get_split_cnt(line) != 3)
-		exit(14);
+		ft_perror("Wrong input err");
 	scene->amb_ratio = get_ratio(line[1]);
 	scene->ambient = vmult(get_color(line[2]), scene->amb_ratio);
 }
@@ -28,12 +28,12 @@ void	parse_camera(char **line, t_scene *scene)
 	double		fov;
 
 	if (get_split_cnt(line) != 4)
-		exit(1);
+		ft_perror("Wrong input err");
 	scene->camera.orig = get_tuple(line[1]);
 	scene->camera.normal = get_normal(line[2]);
 	fov = atodb(line[3]);
 	if (fov < 0 || fov > 180)
-		exit(2);
+		ft_perror("Wrong input err");
 	scene->camera.fov = fov;
 	camera(&scene->camera, scene->canvas.aspect_ratio);
 }
@@ -45,7 +45,7 @@ void	parse_light(char **line, t_scene *scene)
 	t_color3	color;
 
 	if (get_split_cnt(line) != 4)
-		exit(3);
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	ratio = get_ratio(line[2]);
 	color = get_color(line[3]);

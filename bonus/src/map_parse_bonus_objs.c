@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 19:22:31 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:31:15 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	get_maps(t_param *par, t_img *img, char *filepath)
 {
 	char	*temp;
 
-	printf("%s\n", filepath);
 	temp = ft_strchr(filepath, '\n');
 	if (temp)
 		*temp = '\0';
@@ -28,11 +27,11 @@ void	get_maps(t_param *par, t_img *img, char *filepath)
 		img->img = mlx_xpm_file_to_image(par->mlx, \
 		filepath, &img->width, &img->height);
 		if (!img->img)
-			exit(13);
+			ft_perror("img create err");
 		img->addr = mlx_get_data_addr(img->img, \
 		&img->bits_per_pixel, &img->line_length, &img->endian);
 		if (!img->addr)
-			exit(14);
+			ft_perror("img create err");
 	}
 }
 
@@ -46,7 +45,7 @@ void	parse_light_bulb(char **line, t_param *par)
 
 	split_cnt = get_split_cnt(line);
 	if (split_cnt != 4 && split_cnt != 6)
-		exit(5);
+		ft_perror("wrong input err");
 	point = get_tuple(line[1]);
 	radius = get_uvalue(line[2]) / 2;
 	color = get_color(line[3]);
@@ -69,12 +68,12 @@ void	parse_cb(char **line, t_param *par)
 	t_color3	color;
 
 	if (get_split_cnt(line) != 5)
-		exit(7);
+		ft_perror("wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	direction = get_tuple(line[3]);
 	if (vdot(direction, normal) != 0)
-		exit(321);
+		ft_perror("wrong input err");
 	color = get_color(line[4]);
 	oadd(&par->scene.world, object(CB, \
 	checkerboard(point, normal, direction), color));
@@ -89,7 +88,7 @@ void	parse_cone(char **line, t_param *par)
 	t_vec3		normal;
 
 	if (get_split_cnt(line) != 6)
-		exit(6);
+		ft_perror("wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	radius = get_uvalue(line[3]);

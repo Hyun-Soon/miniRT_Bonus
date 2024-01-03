@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:03:03 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/29 14:29:29 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:12:16 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ t_object	*olast(t_object *list);
 t_vec3		rotate_x(t_vec3 vec, double theta);
 t_vec3		rotate_y(t_vec3 vec, double theta);
 void		rotate_h(t_camera *cam, double theta);
+void		ft_perror(char *msg);
+int			rt_ft_atoi(const char *str);
 
 #endif

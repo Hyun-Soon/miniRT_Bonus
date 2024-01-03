@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 19:22:52 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 09:29:46 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef int					t_object_type;
 # define LIGHT_POINT 1
 # define EPSILON 1e-6
 # define LUMEN 3
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 400
+# define HEIGHT 300
 # define NAA 0
 # define AA 1
 
@@ -141,13 +141,14 @@ struct s_object
 
 struct s_param
 {
-	void	*mlx;
-	t_img	img;
-	t_img	aa_img;
-	t_bool	aa_flag;
-	void	*win;
-	int		fd;
-	t_scene	scene;
+	void		*mlx;
+	t_img		img;
+	t_img		aa_img;
+	t_bool		aa_flag;
+	void		*win;
+	int			fd;
+	t_scene		scene;
+	t_color3	**screen;
 };
 
 struct s_sphere

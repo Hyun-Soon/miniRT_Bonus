@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 15:17:46 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/03 10:05:49 by dongseo          ###   ########.fr       */
+/*   Created: 2024/01/03 10:33:38 by dongseo           #+#    #+#             */
+/*   Updated: 2024/01/03 10:38:58 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include "utils.h"
+
+void	ft_perror(char *msg)
+{
+	printf("%s\n", msg);
+	exit(1);
+}
+
+int	rt_ft_atoi(const char *str)
 {
 	int			i;
 	long long	res;
@@ -33,5 +41,7 @@ int	ft_atoi(const char *str)
 		res += str[i] - '0';
 		i++;
 	}
+	if (str[i] != 0 && str[i] != '\n')
+		ft_perror("Wrong input err");
 	return (sign * res);
 }

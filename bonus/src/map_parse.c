@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:42:11 by dongseo           #+#    #+#             */
-/*   Updated: 2023/12/30 13:28:16 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 09:49:19 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	parse_ambient(char **line, t_param *par)
 {
 	if (get_split_cnt(line) != 3)
-		exit(14);
+		ft_perror("wrong input err");
 	par->scene.amb_ratio = get_ratio(line[1]);
 	par->scene.ambient = vmult(get_color(line[2]), par->scene.amb_ratio);
 }
@@ -28,12 +28,12 @@ void	parse_camera(char **line, t_param *par)
 	double		fov;
 
 	if (get_split_cnt(line) != 4)
-		exit(1);
+		ft_perror("wrong input err");
 	par->scene.camera.orig = get_tuple(line[1]);
 	par->scene.camera.normal = get_normal(line[2]);
 	fov = atodb(line[3]);
 	if (fov < 0 || fov > 180)
-		exit(2);
+		ft_perror("wrong input err");
 	par->scene.camera.fov = fov;
 	camera(&par->scene.camera, par->scene.canvas.aspect_ratio);
 }
@@ -45,7 +45,7 @@ void	parse_light(char **line, t_param *par)
 	t_color3	color;
 
 	if (get_split_cnt(line) != 4)
-		exit(3);
+		ft_perror("wrong input err");
 	point = get_tuple(line[1]);
 	ratio = get_ratio(line[2]);
 	color = get_color(line[3]);

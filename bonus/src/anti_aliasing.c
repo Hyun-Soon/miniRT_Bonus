@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 14:23:59 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 16:31:21 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 09:46:06 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ void	divide_ray(t_param *par, t_img *tar_img, t_color3 **screen)
 	}
 }
 
-t_color3	**init_screen(t_img *tar_img)
+t_color3	**init_screen(void)
 {
 	t_color3	**screen;
 	int			i;
 
-	screen = malloc(sizeof(t_color3 *) * 2 * tar_img->height);
+	screen = malloc(sizeof(t_color3 *) * 2 * HEIGHT);
 	if (!screen)
-		exit(1);
+		ft_perror("screen malloc error");
 	i = -1;
-	while (++i < 2 * tar_img->height)
+	while (++i < 2 * HEIGHT)
 	{
-		screen[i] = malloc(sizeof(t_color3) * 2 * tar_img->width);
+		screen[i] = malloc(sizeof(t_color3) * 2 * WIDTH);
 		if (!screen[i])
-			exit(1);
+			ft_perror("screen malloc error");
 	}
 	return (screen);
 }
@@ -82,7 +82,7 @@ void	do_anti_aliasing(t_param *par, t_img *tar_img)
 	int			i;
 	int			j;
 
-	screen = init_screen(tar_img);
+	screen = par->screen;
 	divide_ray(par, tar_img, screen);
 	j = 0;
 	while (j < tar_img->height * 2)

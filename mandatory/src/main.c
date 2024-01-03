@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/02 17:59:56 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:36:31 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	scene_parse(t_param *par)
 		else if (ft_strcmp(split[0], "cy") == 0)
 			parse_cylinder(split, &par->scene);
 		else
-			exit(100);
+			ft_perror("Wrong input err");
 		split_free(split);
 		free(temp);
 		temp = get_next_line(par->fd);
@@ -47,21 +47,18 @@ void	init_image(t_param *par)
 {
 	par->img.img = mlx_new_image(par->mlx, WIDTH, HEIGHT);
 	if (!par->img.img)
-		exit(1);
+		ft_perror("Img create err");
 	par->img.addr = mlx_get_data_addr(par->img.img, &par->img.bits_per_pixel,
 			&par->img.line_length, &par->img.endian);
 	if (!par->img.addr)
-		exit(1);
+		ft_perror("Img create err");
 }
 
 void	init(t_param *par, char *file_name)
 {
 	par->fd = open(file_name, O_RDONLY);
 	if (par->fd < 0)
-	{
-		perror("miniRT");
-		exit(1);
-	}
+		ft_perror("miniRT open err");
 	par->mlx = mlx_init();
 	par->win = mlx_new_window(par->mlx, WIDTH, HEIGHT, "miniRT");
 	init_image(par);

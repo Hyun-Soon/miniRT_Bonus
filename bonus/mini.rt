@@ -1,4 +1,6 @@
 A 0.2 255,255,255
 C 0,0,20 0,0,-1 90
 L 20,20,0 0.7 255,255,255
+sp 5,-1,0 5 153,153,153 none earthbump.xpm
+sp -5,-1,0 5 153,153,153 earth.xpm none
 sp 0,-1,0 5 153,153,153 earth.xpm earthbump.xpm

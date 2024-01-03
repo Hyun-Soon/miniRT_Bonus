@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyuim <hyuim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:55:29 by yusekim           #+#    #+#             */
-/*   Updated: 2023/12/27 11:19:42 by hyuim            ###   ########.fr       */
+/*   Updated: 2024/01/03 10:39:36 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_color3	get_color(char *line)
 
 	colors = ft_split(line, ',');
 	if (get_split_cnt(colors) != 3)
-		exit(10);
+		ft_perror("Wrong input err");
 	i = -1;
 	while (++i < 3)
 	{
-		temp[i] = ft_atoi(colors[i]);
+		temp[i] = rt_ft_atoi(colors[i]);
 		if (temp[i] < 0 || temp[i] > 256)
-			exit(11);
+			ft_perror("Wrong input err");
 	}
 	ret = vdivide(color3((double)temp[0], \
 	(double)temp[1], (double)temp[2]), 255.0);
@@ -45,7 +45,7 @@ t_vec3	get_tuple(char *line)
 
 	vec = ft_split(line, ',');
 	if (get_split_cnt(vec) != 3)
-		exit(12);
+		ft_perror("Wrong input err");
 	i = -1;
 	while (++i < 3)
 		temp[i] = atodb(vec[i]);
@@ -60,7 +60,7 @@ double	get_ratio(char *line)
 
 	ratio = atodb(line);
 	if (ratio < 0 || ratio > 1)
-		exit(13);
+		ft_perror("Wrong input err");
 	return (ratio);
 }
 
@@ -72,6 +72,6 @@ t_vec3	get_normal(char *line)
 	if (temp.x < -1 || temp.x > 1 || \
 	temp.y < -1 || temp.y > 1 || \
 	temp.z < -1 || temp.z > 1)
-		exit(15);
+		ft_perror("Wrong input err");
 	return (vunit(temp));
 }

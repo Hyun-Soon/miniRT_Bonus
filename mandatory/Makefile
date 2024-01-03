@@ -25,6 +25,7 @@ SRCS = ./src/main.c \
 		./src/ray.c \
 		./src/object_create.c \
 		./src/normal.c \
+		./src/utils.c \
 		./src/object_utils.c \
 		./src/phong_lighting.c \
 		./src/map_parse.c \

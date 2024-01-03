@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:41:21 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/02 16:41:22 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 09:47:01 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,18 @@ void	init_image(t_param *par, t_bool flag)
 	tar_img->width = WIDTH;
 	tar_img->img = mlx_new_image(par->mlx, tar_img->width, tar_img->height);
 	if (!tar_img->img)
-		exit(1);
+		ft_perror("img create err");
 	tar_img->addr = mlx_get_data_addr(tar_img->img, &tar_img->bits_per_pixel,
 			&tar_img->line_length, &tar_img->endian);
 	if (!tar_img->addr)
-		exit(1);
+		ft_perror("img create err");
 }
 
 void	init(t_param *par, char *file_name)
 {
 	par->fd = open(file_name, O_RDONLY);
 	if (par->fd < 0)
-	{
-		perror("miniRT");
-		exit(1);
-	}
+		ft_perror("miniRT open err");
 	par->mlx = mlx_init();
 	par->win = mlx_new_window(par->mlx, WIDTH, HEIGHT, "miniRT");
 	par->aa_flag = FALSE;
@@ -54,4 +51,5 @@ void	init(t_param *par, char *file_name)
 		olast(par->scene.world)->next = par->scene.object;
 	else
 		par->scene.world = par->scene.object;
+	par->screen = init_screen();
 }

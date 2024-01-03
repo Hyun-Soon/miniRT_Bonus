@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 09:30:33 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 19:22:37 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 09:38:22 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ t_vec3		get_normal(char *line);
 void		init(t_param *par, char *file_name);
 void		init_image(t_param *par, t_bool flag);
 void		scene_parse(t_param *par);
+t_color3	**init_screen(void);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusekim <yusekim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:47:20 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/02 13:12:09 by yusekim          ###   ########.fr       */
+/*   Updated: 2024/01/03 09:38:17 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	anti_aliasing(t_param *par);
 void	init_image(t_param *par, t_bool flag);
 void	do_anti_aliasing(t_param *par, t_img *tar_img);
 int		get_aa_color(t_img aa_img, int i, int j);
-
 #endif
