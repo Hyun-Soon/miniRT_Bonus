@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:00:03 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/02 19:23:06 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:47:38 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,21 +163,6 @@ struct s_disk
 	t_point3	center;
 	t_vec3		normal;
 	double		radius;
-};
-
-struct s_cone
-{
-	t_point3	center;
-	t_vec3		normal;
-	double		radius;
-	double		height;
-};
-
-struct s_cb
-{
-	t_point3	point;
-	t_vec3		normal;
-	t_vec3		dir;
 };
 
 #endif
