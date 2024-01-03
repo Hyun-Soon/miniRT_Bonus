@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 10:58:41 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/03 09:50:05 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:44:58 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ double	get_db(const char *str, int idx)
 		if (*(str + idx) == '.')
 			point_flag = 1;
 		else if (*(str + idx) == '-' || *(str + idx) == '+')
-			ft_perror("wrong input err");
+			ft_perror("Wrong input err");
 		else if (point_flag == 0)
 			integer = integer * 10 + (*(str + idx) - '0');
 		else
@@ -66,7 +66,7 @@ double	atodb(char *str)
 	double	ret;
 
 	if (check_valid_double(str) == -1)
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 	idx = 0;
 	sign = 1;
 	if (*(str) == '-' || *(str) == '+')

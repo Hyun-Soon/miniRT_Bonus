@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:41:21 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/03 09:47:01 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:45:33 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	init_image(t_param *par, t_bool flag)
 	tar_img->width = WIDTH;
 	tar_img->img = mlx_new_image(par->mlx, tar_img->width, tar_img->height);
 	if (!tar_img->img)
-		ft_perror("img create err");
+		ft_perror("Img create err");
 	tar_img->addr = mlx_get_data_addr(tar_img->img, &tar_img->bits_per_pixel,
 			&tar_img->line_length, &tar_img->endian);
 	if (!tar_img->addr)
-		ft_perror("img create err");
+		ft_perror("Img create err");
 }
 
 void	init(t_param *par, char *file_name)

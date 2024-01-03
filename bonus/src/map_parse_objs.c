@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 17:48:53 by yusekim           #+#    #+#             */
-/*   Updated: 2024/01/03 09:49:02 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:44:58 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	get_uvalue(char *line)
 
 	diameter = atodb(line);
 	if (diameter <= 0)
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 	return (diameter);
 }
 
@@ -35,7 +35,7 @@ void	parse_sphere(char **line, t_param *par)
 
 	split_cnt = get_split_cnt(line);
 	if (split_cnt != 4 && split_cnt != 6)
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	radius = get_uvalue(line[2]) / 2;
 	color = get_color(line[3]);
@@ -56,7 +56,7 @@ void	parse_disk(char **line, t_param *par)
 	t_vec3		normal;
 
 	if (get_split_cnt(line) != 5)
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	radius = get_uvalue(line[3]) / 2;
@@ -73,7 +73,7 @@ void	parse_cylinder(char **line, t_param *par)
 	t_vec3		normal;
 
 	if (get_split_cnt(line) != 6)
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	radius = get_uvalue(line[3]) / 2;
@@ -94,7 +94,7 @@ void	parse_plane(char **line, t_param *par)
 	t_vec3		normal;
 
 	if (get_split_cnt(line) != 4)
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 	point = get_tuple(line[1]);
 	normal = get_normal(line[2]);
 	color = get_color(line[3]);

@@ -6,7 +6,7 @@
 /*   By: dongseo <dongseo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:28:08 by dongseo           #+#    #+#             */
-/*   Updated: 2024/01/03 10:32:10 by dongseo          ###   ########.fr       */
+/*   Updated: 2024/01/03 10:44:58 by dongseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_bonus(char **split, t_param *par)
 	else if (get_split_cnt(split) == 1 && ft_strlen(split[0]) == 1)
 		;
 	else
-		ft_perror("wrong input err");
+		ft_perror("Wrong input err");
 }
 
 void	scene_parse(t_param *par)
